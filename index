@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="mk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Одбројување до летот: Даблин ✈ Маракеш | Aer Lingus</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☘️</text></svg>">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* Слика од Aer Lingus авион со препознатливата детелина на опашот */
+            background-image: url('https://images.unsplash.com/photo-1542296332-2e4473faf563?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Темно-зелен заштитен слој во стилот на Aer Lingus */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 74, 58, 0.65); /* Aer Lingus смарагдно зелена нијанса */
+            z-index: 1;
+        }
+
+        /* Навигација */
+        .navbar {
+            width: 100%;
+            background: rgba(0, 48, 38, 0.88);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar-menu {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .navbar-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .navbar-menu a:hover {
+            opacity: 1;
+        }
+
+        .main-content {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 80px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .container {
+            padding: 20px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: #ffffff; 
+            margin-bottom: 40px;
+            font-weight: 400;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .airport-code {
+            font-weight: 700;
+            color: #00E676; /* Светло зелена боја на Aer Lingus акцент */
+        }
+
+        .countdown-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .time-box {
+            background: rgba(255, 255, 255, 0.12);
+            padding: 25px 35px;
+            border-radius: 15px;
+            min-width: 150px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .number {
+            font-size: 5rem;
+            font-weight: 700;
+            line-height: 1;
+            display: block;
+            margin-bottom: 5px;
+            font-variant-numeric: tabular-nums;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #e2e8f0;
+        }
+
+        /* Детали за летот */
+        .flight-details {
+            margin-top: 45px;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.95);
+            letter-spacing: 1px;
+            background: rgba(0, 48, 38, 0.7);
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 30px;
+            border: 1px solid rgba(0, 230, 118, 0.3);
+            backdrop-filter: blur(5px);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+        }
+
+        .highlight {
+            color: #00E676;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 1.9rem; }
+            h2 { font-size: 1.2rem; margin-bottom: 25px; }
+            .time-box { padding: 15px 20px; min-width: 100px; }
+            .number { font-size: 3rem; }
+            .label { font-size: 0.8rem; }
+            .flight-details { font-size: 0.9rem; padding: 10px 20px; }
+            .navbar { padding: 15px; }
+            .navbar-menu { gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Навигација -->
+    <nav class="navbar">
+        <div class="navbar-brand">☘️ Мои Летови</div>
+        <ul class="navbar-menu">
+            <li><a href="https://ilijalazaroviki.github.io/LetFaroPortugal/">Почетна</a></li>
+            <li><a href="https://ilijalazaroviki.github.io/LetFaroPortugal/">Фаро</a></li>
+            <li><a href="https://ilijalazaroviki.github.io/Let_amsterdam/">Амстердам</a></li>
+            <li><a href="https://ilijalazaroviki.github.io/FlighttoCopenhagen/">Копенхаген</a></li>
+            <li><a href="#" style="opacity: 1; font-weight: 700; border-bottom: 2px solid #00E676;">Маракеш ☘️</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <div class="container">
+            <h1>Авантура во Мароко! 🕌</h1>
+            <h2>
+                <span>🍀 Даблин <span class="airport-code">(DUB)</span></span>
+                <span>✈</span>
+                <span>🇲🇦 Маракеш <span class="airport-code">(RAK)</span></span>
+            </h2>
+            
+            <div class="countdown-wrapper">
+                <div class="time-box">
+                    <span class="number" id="days">00</span>
+                    <span class="label">Денови</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="hours">00</span>
+                    <span class="label">Часови</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="minutes">00</span>
+                    <span class="label">Минути</span>
+                </div>
+                <div class="time-box">
+                    <span class="number" id="seconds">00</span>
+                    <span class="label">Секунди</span>
+                </div>
+            </div>
+
+            <!-- Детали за летот -->
+            <div class="flight-details">
+                Време на лет: <span class="highlight">17 Октомври 2026 во 15:35</span> • Летот е опериран од <span class="highlight">Aer Lingus ☘️</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Точниот датум за полетување (17 Октомври 2026 во 15:35:00)
+        const flightDate = new Date("Oct 17, 2026 15:35:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = flightDate - now;
+
+            // Доколку летот веќе поминал
+            if (distance < 0) {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                clearInterval(timer);
+                return;
+            }
+
+            // Пресметување на денови, часови, минути и секунди
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Форматирање со водечка нула (на пр. 03)
+            const formatTime = (num) => num < 10 ? "0" + num : num;
+
+            // Поставување на вредностите во HTML
+            document.getElementById("days").innerText = formatTime(days);
+            document.getElementById("hours").innerText = formatTime(hours);
+            document.getElementById("minutes").innerText = formatTime(minutes);
+            document.getElementById("seconds").innerText = formatTime(seconds);
+        }
+
+        // Старт веднаш
+        updateCountdown();
+
+        // Ажурирање на секоја секунда
+        const timer = setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
